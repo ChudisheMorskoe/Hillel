@@ -6,8 +6,11 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'Tests\\' => array($baseDir . '/tests'),
     'Symfony\\Polyfill\\Php80\\' => array($vendorDir . '/symfony/polyfill-php80'),
     'Symfony\\Polyfill\\Mbstring\\' => array($vendorDir . '/symfony/polyfill-mbstring'),
     'Symfony\\Component\\VarDumper\\' => array($vendorDir . '/symfony/var-dumper'),
-    'App\\' => array($baseDir . '/App/src'),
+    'Database\\Seeders\\' => array($baseDir . '/database/seeders'),
+    'Database\\Factories\\' => array($baseDir . '/database/factories'),
+    'App\\' => array($baseDir . '/app'),
 );
