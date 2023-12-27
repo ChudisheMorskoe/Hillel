@@ -1,13 +1,39 @@
 <?php
 
-use App\DeliveryCalculator;
+use App\Context;
+use App\Strategy\FirstFormatStrategy;
+use App\Strategy\SecondFormatStrategy;
 
-require __DIR__.'/vendor/autoload.php';
+require __DIR__ . '/vendor/autoload.php';
 
-$weight = new DeliveryCalculator(100, 10, 10, 10, 10);
-$valueWeightPrice = new DeliveryCalculator(10, 100, 100, 100, 10);
-$highSellerPrice = new DeliveryCalculator(10, 10, 10, 10, 10000);
+$object = [
+    (object)
+    [
+    'brandName' => 'Ford',
+    'model' => 'Mustang',
+    'modelDetails' => 'GT rest 2',
+    'modelYear' => 2014,
+    'productionYear' => 2013,
+    'color' => 'Oxford White'
+],
+    (object)
+    [
+        'brandName' => 'BMW',
+        'model' => '520i',
+        'modelDetails' => 'rest',
+        'modelYear' => 2001,
+        'productionYear' => 2001,
+        'color' => 'Green'
+    ]
+];
 
-var_dump($weight->calculate());
-var_dump($valueWeightPrice->calculate());
-var_dump($highSellerPrice->calculate());
+$context = new Context($object);
+
+$firstStrategy = new FirstFormatStrategy();
+$resultFirst = $context->applyStrategy($firstStrategy);
+
+
+$secondStrategy = new SecondFormatStrategy();
+$resultSecond = $context->applyStrategy($secondStrategy);
+
+dd($resultFirst,$resultSecond);
